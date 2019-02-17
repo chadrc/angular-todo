@@ -37,67 +37,6 @@
       </div>
     </div>
   </nav>
-  <section class="section">
-    <div class="columns">
-      <div class="column is-one-third">
-        <h3 class="subtitle is-3">Lists</h3>
-        <aside class="menu">
-          <div *ngFor="let category of categoriesWithLists">
-            <p class="menu-label">
-              {{ category.name }}
-            </p>
-            <ul class="menu-list">
-              <li *ngFor="let list of listsWithCategory(category.id)">
-                <a (click)="selectList(list.id)">{{ list.name }}</a>
-              </li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-      <div class="column">
-        <h2 class="subtitle is-2">Selected List</h2>
-        <div class="field has-addons">
-          <p class="control is-expanded">
-            <input
-              class="input"
-              [(ngModel)]="newTodoText"
-              type="text"
-              placeholder="New Todo"
-              aria-label="Text input with checkbox"
-            />
-          </p>
-          <p class="control">
-            <button class="button is-primary" type="button">
-              Add
-            </button>
-          </p>
-        </div>
-        <div class="field has-addons" *ngFor="let todo of selectedListTodos">
-          <p class="control">
-            <span class="select">
-              <select [(ngModel)]="todo.completed">
-                <option [value]="false">Todo</option>
-                <option [value]="true">Done</option>
-              </select>
-            </span>
-          </p>
-          <p class="control is-expanded">
-            <input
-              class="input"
-              [(ngModel)]="todo.text"
-              type="text"
-              aria-label="Text input with checkbox"
-            />
-          </p>
-          <p class="control">
-            <button class="button is-danger" type="button">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</main>
