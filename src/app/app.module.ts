@@ -10,9 +10,10 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CategoriesPageComponent } from "./categories/categories-page.component";
 import { NavBarComponent } from "./header/nav-bar.component";
+import { TodoPageComponent } from './todo/todo-page.component';
 
 @NgModule({
-  declarations: [AppComponent, CategoriesPageComponent, NavBarComponent],
+  declarations: [AppComponent, CategoriesPageComponent, NavBarComponent, TodoPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
