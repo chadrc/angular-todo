@@ -49,4 +49,18 @@ export class AppComponent {
       new Todo("Todo 4.3")
     ])
   ];
+
+  listsWithCategory(categoryId: number) {
+    return this.todoLists.filter(
+      (list: TodoList) => list.categoryId === categoryId
+    );
+  }
+
+  get selectedListTodos() {
+    if (this.selectedListIndex === -1) {
+      return [];
+    }
+
+    return this.todoLists[this.selectedListIndex].todos;
+  }
 }

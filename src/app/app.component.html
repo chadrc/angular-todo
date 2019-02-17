@@ -2,7 +2,7 @@
 <main>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
+      <a class="navbar-item" href="/">
         <h3 class="title is-3">{{ title }}</h3>
       </a>
 
@@ -36,30 +36,16 @@
       <div class="column is-one-third">
         <h3 class="subtitle is-3">Lists</h3>
         <aside class="menu">
-          <p class="menu-label">
-            Category 1
-          </p>
-          <ul class="menu-list">
-            <li><a>Dashboard</a></li>
-            <li><a>Customers</a></li>
-          </ul>
-          <p class="menu-label">
-            Category 2
-          </p>
-          <ul class="menu-list">
-            <li><a>Team Settings</a></li>
-            <li><a>Invitations</a></li>
-            <li><a>Cloud Storage Environment Settings</a></li>
-            <li><a>Authentication</a></li>
-          </ul>
-          <p class="menu-label">
-            Category 3
-          </p>
-          <ul class="menu-list">
-            <li><a>Payments</a></li>
-            <li><a>Transfers</a></li>
-            <li><a>Balance</a></li>
-          </ul>
+          <div *ngFor="let category of categories">
+            <p class="menu-label">
+              {{ category.name }}
+            </p>
+            <ul class="menu-list">
+              <li *ngFor="let list of listsWithCategory(category.id)">
+                <a>{{ list.name }}</a>
+              </li>
+            </ul>
+          </div>
         </aside>
       </div>
       <div class="column">
@@ -80,19 +66,19 @@
             </button>
           </p>
         </div>
-        <div class="field has-addons">
+        <div class="field has-addons" *ngFor="let todo of selectedListTodos">
           <p class="control">
             <span class="select">
-              <select v-model="completed">
-                <option :value="false">Todo</option>
-                <option :value="true">Done</option>
+              <select [(ngModel)]="todo.completed">
+                <option [value]="false">Todo</option>
+                <option [value]="true">Done</option>
               </select>
             </span>
           </p>
           <p class="control is-expanded">
             <input
               class="input"
-              v-model="text"
+              [(ngModel)]="todo.text"
               type="text"
               aria-label="Text input with checkbox"
             />
