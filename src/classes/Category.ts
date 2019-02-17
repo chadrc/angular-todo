@@ -1,4 +1,4 @@
-import genId from "@/genId";
+import genId from "../utils/genId";
 
 export default class Category {
   id!: number;

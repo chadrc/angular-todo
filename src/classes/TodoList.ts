@@ -1,5 +1,5 @@
 import Todo from "./Todo";
-import genId from "@/genId";
+import genId from "../utils/genId";
 export default class TodoList {
   id!: number;
   name!: String;
