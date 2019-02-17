@@ -10,18 +10,31 @@ import { tap, catchError } from "rxjs/operators";
   providedIn: "root"
 })
 export class TodoService {
+  private categories: Category[];
+  private todoLists: TodoList[];
+
   constructor(private http: HttpClient) {}
 
   getCategories(): Observable<Category[]> {
+    if (this.categories) {
+      return of(this.categories);
+    }
+
     return this.http.get<Category[]>("api/categories.json").pipe(
       tap(this.log),
+      tap(data => (this.categories = data)),
       catchError(this.handleError)
     );
   }
 
   getTodoLists(): Observable<TodoList[]> {
+    if (this.todoLists) {
+      return of(this.todoLists);
+    }
+
     return this.http.get<TodoList[]>("api/todoLists.json").pipe(
       tap(this.log),
+      tap(data => (this.todoLists = data)),
       catchError(this.handleError)
     );
   }
