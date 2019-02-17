@@ -50,6 +50,16 @@ export class AppComponent {
     ])
   ];
 
+  get categoriesWithLists() {
+    let categoryIds = {};
+    for (let list of this.todoLists) {
+      categoryIds[list.categoryId] = true;
+    }
+    return Object.keys(categoryIds).map(categoryId =>
+      this.categories.find(category => category.id === parseInt(categoryId))
+    );
+  }
+
   listsWithCategory(categoryId: number) {
     return this.todoLists.filter(
       (list: TodoList) => list.categoryId === categoryId
@@ -62,5 +72,11 @@ export class AppComponent {
     }
 
     return this.todoLists[this.selectedListIndex].todos;
+  }
+
+  selectList(listId: number) {
+    this.selectedListIndex = this.todoLists.findIndex(
+      (list: TodoList) => list.id === listId
+    );
   }
 }

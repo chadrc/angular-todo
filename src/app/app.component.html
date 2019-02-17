@@ -36,13 +36,13 @@
       <div class="column is-one-third">
         <h3 class="subtitle is-3">Lists</h3>
         <aside class="menu">
-          <div *ngFor="let category of categories">
+          <div *ngFor="let category of categoriesWithLists">
             <p class="menu-label">
               {{ category.name }}
             </p>
             <ul class="menu-list">
               <li *ngFor="let list of listsWithCategory(category.id)">
-                <a>{{ list.name }}</a>
+                <a (onclick)="selectList(list.id)">{{ list.name }}</a>
               </li>
             </ul>
           </div>
@@ -54,7 +54,7 @@
           <p class="control is-expanded">
             <input
               class="input"
-              v-model="newTodoText"
+              [(ngModel)]="newTodoText"
               type="text"
               placeholder="New Todo"
               aria-label="Text input with checkbox"
