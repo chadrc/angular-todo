@@ -1,8 +1,36 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <main>
-  <h2>
-    {{ title }}
-  </h2>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io">
+        <h3 class="title is-3">{{ title }}</h3>
+      </a>
+
+      <a
+        role="button"
+        class="navbar-burger burger"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarBasicExample"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item">
+          Todos
+        </a>
+
+        <a class="navbar-item">
+          Categories
+        </a>
+      </div>
+    </div>
+  </nav>
 </main>
 
 <router-outlet></router-outlet>
