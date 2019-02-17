@@ -42,7 +42,7 @@
             </p>
             <ul class="menu-list">
               <li *ngFor="let list of listsWithCategory(category.id)">
-                <a (onclick)="selectList(list.id)">{{ list.name }}</a>
+                <a (click)="selectList(list.id)">{{ list.name }}</a>
               </li>
             </ul>
           </div>
