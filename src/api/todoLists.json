@@ -1,0 +1,34 @@
+[
+  {
+    "id": 15,
+    "name": "List 1",
+    "todos": [
+      { "id": 13, "text": "Todo 1.1", "completed": false },
+      { "id": 14, "text": "Todo 1.2", "completed": false }
+    ],
+    "categoryId": 4
+  },
+  { "id": 16, "name": "List 2", "todos": [], "categoryId": 5 },
+  {
+    "id": 22,
+    "name": "List 3",
+    "todos": [
+      { "id": 17, "text": "Todo 3.1", "completed": false },
+      { "id": 18, "text": "Todo 3.2", "completed": false },
+      { "id": 19, "text": "Todo 3.3", "completed": false },
+      { "id": 20, "text": "Todo 3.4", "completed": false },
+      { "id": 21, "text": "Todo 3.5", "completed": false }
+    ],
+    "categoryId": 9
+  },
+  {
+    "id": 26,
+    "name": "List 4",
+    "todos": [
+      { "id": 23, "text": "Todo 4.1", "completed": false },
+      { "id": 24, "text": "Todo 4.2", "completed": false },
+      { "id": 25, "text": "Todo 4.3", "completed": false }
+    ],
+    "categoryId": 2
+  }
+]

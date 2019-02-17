@@ -21,12 +21,29 @@ export class AppComponent implements OnInit {
   currentCategoryPage = 1;
   categories: Category[] = [];
   todoLists: TodoList[] = [];
+  fetchCategoriesError: any;
+  fetchTodoListsError: any;
 
   constructor(private todoService: TodoService) {}
 
-  async ngOnInit(): Promise<any> {
-    this.categories = await this.todoService.getCategories();
-    this.todoLists = await this.todoService.getTodoLists();
+  ngOnInit() {
+    this.todoService.getCategories().subscribe(
+      categories => {
+        this.categories = categories;
+      },
+      error => {
+        this.fetchCategoriesError = error;
+      }
+    );
+
+    this.todoService.getTodoLists().subscribe(
+      todoLists => {
+        this.todoLists = todoLists;
+      },
+      error => {
+        this.fetchTodoListsError = error;
+      }
+    );
   }
 
   get categoriesWithLists() {
