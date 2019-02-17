@@ -11,6 +11,7 @@ import { TodoService } from "./todo.service";
 })
 export class AppComponent implements OnInit {
   title = "Todo App";
+  burgerOpen = false;
   newTodoText = "";
   selectedListIndex = 0;
   creatingList = false;
@@ -44,6 +45,10 @@ export class AppComponent implements OnInit {
         this.fetchTodoListsError = error;
       }
     );
+  }
+
+  toggleBurger() {
+    this.burgerOpen = !this.burgerOpen;
   }
 
   get categoriesWithLists() {

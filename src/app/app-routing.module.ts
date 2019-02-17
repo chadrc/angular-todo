@@ -5,7 +5,8 @@ import { CategoriesPageComponent } from "./categories/categories-page.component"
 
 const routes: Routes = [
   { path: "categories", component: CategoriesPageComponent },
-  { path: "", component: TodoPageComponent }
+  { path: "", component: TodoPageComponent },
+  { path: "**", component: TodoPageComponent }
 ];
 
 @NgModule({
