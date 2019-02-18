@@ -2,7 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import Category from "src/classes/Category";
 import TodoList from "src/classes/TodoList";
 import { TodoService } from "../todo.service";
+import { NbMenuItem } from "@nebular/theme";
 
+interface CategoryListing {
+  category: Category;
+  lists: TodoList[];
+}
 @Component({
   selector: "app-todo-page",
   templateUrl: "./todo-page.component.html",
@@ -21,6 +26,7 @@ export class TodoPageComponent implements OnInit {
   todoLists: TodoList[] = [];
   fetchCategoriesError: any;
   fetchTodoListsError: any;
+  menuItems: NbMenuItem[] = [];
 
   constructor(private todoService: TodoService) {}
 
@@ -36,18 +42,19 @@ export class TodoPageComponent implements OnInit {
     this.todoService.getCategories().subscribe(
       categories => {
         this.categories = categories;
+
+        this.todoService.getTodoLists().subscribe(
+          todoLists => {
+            this.todoLists = todoLists;
+            this.createItems();
+          },
+          error => {
+            this.fetchTodoListsError = error;
+          }
+        );
       },
       error => {
         this.fetchCategoriesError = error;
-      }
-    );
-
-    this.todoService.getTodoLists().subscribe(
-      todoLists => {
-        this.todoLists = todoLists;
-      },
-      error => {
-        this.fetchTodoListsError = error;
       }
     );
   }
@@ -82,5 +89,35 @@ export class TodoPageComponent implements OnInit {
     this.selectedListIndex = this.todoLists.findIndex(
       (list: TodoList) => list.id === listId
     );
+  }
+
+  createItems() {
+    this.menuItems = this.todoLists
+      .reduce((previous: CategoryListing[], current: TodoList) => {
+        let categoryListing = previous.find(
+          listing => listing.category.id === current.categoryId
+        );
+
+        if (!categoryListing) {
+          categoryListing = {
+            category: this.categories.find(
+              category => category.id === current.categoryId
+            ),
+            lists: []
+          };
+
+          previous.push(categoryListing);
+        }
+
+        categoryListing.lists.push(current);
+
+        return previous;
+      }, [])
+      .map((categoryListing: CategoryListing) => ({
+        title: categoryListing.category.name,
+        children: categoryListing.lists.map(list => ({
+          title: list.name
+        }))
+      }));
   }
 }

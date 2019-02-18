@@ -2,11 +2,11 @@ import Todo from "./Todo";
 import genId from "../utils/genId";
 export default class TodoList {
   id!: number;
-  name!: String;
+  name!: string;
   todos!: Todo[];
   categoryId!: number;
 
-  constructor(name: String, categoryId: number, todos: Todo[] = []) {
+  constructor(name: string, categoryId: number, todos: Todo[] = []) {
     this.id = genId();
     this.name = name;
     this.todos = todos;

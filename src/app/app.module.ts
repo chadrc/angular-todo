@@ -11,7 +11,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CategoriesPageComponent } from "./categories/categories-page.component";
 import { NavBarComponent } from "./header/nav-bar.component";
 import { TodoPageComponent } from "./todo/todo-page.component";
-import { NbThemeModule, NbLayoutModule, NbActionsModule } from "@nebular/theme";
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbActionsModule,
+  NbMenuModule
+} from "@nebular/theme";
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { NbThemeModule, NbLayoutModule, NbActionsModule } from "@nebular/theme";
     HttpClientModule,
     NbThemeModule.forRoot({ name: "default" }),
     NbLayoutModule,
-    NbActionsModule
+    NbActionsModule,
+    NbMenuModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
