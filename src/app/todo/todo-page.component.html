@@ -9,12 +9,13 @@
     </nb-sidebar>
 
     <nb-layout-column>
-      Selected list
+      <h1>Selected List</h1>
+      <nb-card *ngFor="let todo of selectedListTodos">
+        <nb-card-body>
+          {{ todo.text }}
+        </nb-card-body>
+      </nb-card>
     </nb-layout-column>
-
-    <nb-layout-footer fixed>
-      <!-- Insert footer here -->
-    </nb-layout-footer>
   </nb-layout>
   <!-- <div class="columns">
     <div class="column is-one-third">

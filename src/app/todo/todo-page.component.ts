@@ -3,6 +3,7 @@ import Category from "src/classes/Category";
 import TodoList from "src/classes/TodoList";
 import { TodoService } from "../todo.service";
 import { NbMenuItem } from "@nebular/theme";
+import Todo from "src/classes/Todo";
 
 interface CategoryListing {
   category: Category;
@@ -69,13 +70,7 @@ export class TodoPageComponent implements OnInit {
     );
   }
 
-  listsWithCategory(categoryId: number) {
-    return this.todoLists.filter(
-      (list: TodoList) => list.categoryId === categoryId
-    );
-  }
-
-  get selectedListTodos() {
+  get selectedListTodos(): Todo[] {
     if (this.selectedListIndex === -1) {
       return [];
     }
