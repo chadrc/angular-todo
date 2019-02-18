@@ -60,8 +60,6 @@ export class TodoPageComponent implements OnInit, OnDestroy {
               let id = params.get("id");
               if (id) {
                 this.selectList(parseInt(id));
-                console.log(this.todoLists);
-                console.log(this.selectedListIndex);
               }
             });
           },
