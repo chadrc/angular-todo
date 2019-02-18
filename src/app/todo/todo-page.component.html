@@ -1,5 +1,21 @@
 <section>
-  <nb-menu [items]="menuItems"></nb-menu>
+  <nb-layout>
+    <nb-layout-header fixed>
+      <app-nav-bar></app-nav-bar>
+    </nb-layout-header>
+
+    <nb-sidebar>
+      <nb-menu [items]="menuItems"></nb-menu>
+    </nb-sidebar>
+
+    <nb-layout-column>
+      Selected list
+    </nb-layout-column>
+
+    <nb-layout-footer fixed>
+      <!-- Insert footer here -->
+    </nb-layout-footer>
+  </nb-layout>
   <!-- <div class="columns">
     <div class="column is-one-third">
       <h3 class="subtitle is-3">Lists</h3>

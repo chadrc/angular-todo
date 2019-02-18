@@ -1,27 +1,3 @@
 <main>
-  <nb-layout>
-    <nb-layout-header fixed>
-      <h3>{{ title }}</h3>
-      <nb-actions>
-        <nb-action>
-          <a [routerLink]="['/']">
-            Todos
-          </a>
-        </nb-action>
-        <nb-action>
-          <a [routerLink]="['/categories']">
-            Categories
-          </a>
-        </nb-action>
-      </nb-actions>
-    </nb-layout-header>
-
-    <nb-layout-column>
-      <router-outlet></router-outlet>
-    </nb-layout-column>
-
-    <nb-layout-footer fixed>
-      <!-- Insert footer here -->
-    </nb-layout-footer>
-  </nb-layout>
+  <router-outlet></router-outlet>
 </main>

@@ -9,11 +9,4 @@ import { TodoService } from "./todo.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent {
-  title = "Todo App";
-  burgerOpen = false;
-
-  toggleBurger() {
-    this.burgerOpen = !this.burgerOpen;
-  }
-}
+export class AppComponent {}

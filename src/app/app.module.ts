@@ -15,7 +15,8 @@ import {
   NbThemeModule,
   NbLayoutModule,
   NbActionsModule,
-  NbMenuModule
+  NbMenuModule,
+  NbSidebarModule
 } from "@nebular/theme";
 
 @NgModule({
@@ -35,7 +36,8 @@ import {
     NbThemeModule.forRoot({ name: "default" }),
     NbLayoutModule,
     NbActionsModule,
-    NbMenuModule.forRoot()
+    NbMenuModule.forRoot(),
+    NbSidebarModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
