@@ -16,7 +16,7 @@ interface CategoryListing {
 })
 export class TodoPageComponent implements OnInit {
   _newTodoText = "";
-  selectedListIndex = 0;
+  selectedListIndex = -1;
   creatingList = false;
   listIndexToDelete = -1;
   editingListIndex = -1;
