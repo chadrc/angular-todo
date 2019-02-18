@@ -17,7 +17,8 @@ import {
   NbActionsModule,
   NbMenuModule,
   NbSidebarModule,
-  NbCardModule
+  NbCardModule,
+  NbButtonModule
 } from "@nebular/theme";
 
 @NgModule({
@@ -38,7 +39,9 @@ import {
     NbLayoutModule,
     NbActionsModule,
     NbCardModule,
+    NbButtonModule,
     NbMenuModule.forRoot(),
+    NbMenuModule,
     NbSidebarModule.forRoot()
   ],
   providers: [],

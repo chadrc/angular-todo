@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import Category from "src/classes/Category";
 import TodoList from "src/classes/TodoList";
 import { TodoService } from "../todo.service";
-import { NbMenuItem } from "@nebular/theme";
+import { NbMenuItem, NbMenuService } from "@nebular/theme";
 import Todo from "src/classes/Todo";
+import { takeWhile, tap } from "rxjs/operators";
 
 interface CategoryListing {
   category: Category;
@@ -14,7 +15,7 @@ interface CategoryListing {
   templateUrl: "./todo-page.component.html",
   styleUrls: ["./todo-page.component.scss"]
 })
-export class TodoPageComponent implements OnInit {
+export class TodoPageComponent implements OnInit, OnDestroy {
   _newTodoText = "";
   selectedListIndex = -1;
   creatingList = false;
@@ -28,8 +29,13 @@ export class TodoPageComponent implements OnInit {
   fetchCategoriesError: any;
   fetchTodoListsError: any;
   menuItems: NbMenuItem[] = [];
+  selectedItem: string;
+  private alive: boolean = true;
 
-  constructor(private todoService: TodoService) {}
+  constructor(
+    private todoService: TodoService,
+    private menuService: NbMenuService
+  ) {}
 
   get newTodoText() {
     return this._newTodoText;
@@ -60,6 +66,10 @@ export class TodoPageComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.alive = false;
+  }
+
   get selectedListName(): string {
     if (this.selectedListIndex === -1) {
       return "Select List";
@@ -82,6 +92,16 @@ export class TodoPageComponent implements OnInit {
     this.selectedListIndex = this.todoLists.findIndex(
       (list: TodoList) => list.id === listId
     );
+  }
+
+  getSelectedItem() {
+    this.menuService
+      .getSelectedItem("todoListsMenu")
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(menuBag => {
+        console.log(menuBag);
+        // this.selectedItem = menuBag.item.title;
+      });
   }
 
   createItems() {
