@@ -60,16 +60,6 @@ export class TodoPageComponent implements OnInit {
     );
   }
 
-  get categoriesWithLists() {
-    let categoryIds = {};
-    for (let list of this.todoLists) {
-      categoryIds[list.categoryId] = true;
-    }
-    return Object.keys(categoryIds).map(categoryId =>
-      this.categories.find(category => category.id === parseInt(categoryId))
-    );
-  }
-
   get selectedListName(): string {
     if (this.selectedListIndex === -1) {
       return "Select List";
