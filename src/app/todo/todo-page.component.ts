@@ -139,7 +139,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
         title: categoryListing.category.name,
         children: categoryListing.lists.map(list => ({
           title: list.name,
-          url: `list/${list.id}`
+          link: `/list/${list.id}`
         }))
       }));
   }
