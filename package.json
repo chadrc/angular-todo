@@ -2,6 +2,7 @@
   "name": "angular-todo",
   "version": "0.0.0",
   "scripts": {
+    "stats": "npx webpack-bundle-analyzer dist/angular-todo/stats.json",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -47,6 +48,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.2"
+    "typescript": "~3.2.2",
+    "webpack-bundle-analyzer": "^3.0.4"
   }
 }
