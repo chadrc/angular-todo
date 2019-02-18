@@ -5,6 +5,7 @@ import { TodoService } from "../todo.service";
 import { NbMenuItem, NbMenuService } from "@nebular/theme";
 import Todo from "src/classes/Todo";
 import { takeWhile, tap } from "rxjs/operators";
+import { ActivatedRoute } from "@angular/router";
 
 interface CategoryListing {
   category: Category;
@@ -34,7 +35,8 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private todoService: TodoService,
-    private menuService: NbMenuService
+    private menuService: NbMenuService,
+    private activedRoute: ActivatedRoute
   ) {}
 
   get newTodoText() {
@@ -54,6 +56,13 @@ export class TodoPageComponent implements OnInit, OnDestroy {
           todoLists => {
             this.todoLists = todoLists;
             this.createItems();
+
+            let id = this.activedRoute.snapshot.paramMap.get("id");
+            if (id) {
+              this.selectList(parseInt(id));
+              console.log(this.todoLists);
+              console.log(this.selectedListIndex);
+            }
           },
           error => {
             this.fetchTodoListsError = error;
@@ -129,7 +138,8 @@ export class TodoPageComponent implements OnInit, OnDestroy {
       .map((categoryListing: CategoryListing) => ({
         title: categoryListing.category.name,
         children: categoryListing.lists.map(list => ({
-          title: list.name
+          title: list.name,
+          url: `list/${list.id}`
         }))
       }));
   }

@@ -5,6 +5,7 @@ import { CategoriesPageComponent } from "./categories/categories-page.component"
 
 const routes: Routes = [
   { path: "categories", component: CategoriesPageComponent },
+  { path: "list/:id", component: TodoPageComponent },
   { path: "", component: TodoPageComponent },
   { path: "**", component: TodoPageComponent }
 ];
