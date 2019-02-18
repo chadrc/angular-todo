@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CategoriesPageComponent } from "./categories/categories-page.component";
 import { NavBarComponent } from "./header/nav-bar.component";
 import { TodoPageComponent } from './todo/todo-page.component';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [AppComponent, CategoriesPageComponent, NavBarComponent, TodoPageComponent],
@@ -20,7 +21,9 @@ import { TodoPageComponent } from './todo/todo-page.component';
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

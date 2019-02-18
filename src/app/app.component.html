@@ -1,42 +1,58 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<main>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-        <h3 class="title is-3">{{ title }}</h3>
-      </a>
+<nb-layout>
 
-      <a
-        role="button"
-        class="navbar-burger burger"
-        [ngClass]="{ 'is-active': burgerOpen }"
-        aria-label="menu"
-        aria-expanded="false"
-        data-target="navbarBasicExample"
-        (click)="toggleBurger()"
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
+  <nb-layout-header fixed>
+  <!-- Insert header here -->
+  </nb-layout-header>
 
-    <div
-      id="navbarBasicExample"
-      class="navbar-menu"
-      [ngClass]="{ 'is-active': burgerOpen }"
-    >
-      <div class="navbar-start">
-        <a class="navbar-item" [routerLink]="['/']">
-          Todos
-        </a>
+  <nb-layout-column>
 
-        <a class="navbar-item" [routerLink]="['/categories']">
-          Categories
-        </a>
-      </div>
-    </div>
-  </nav>
+    <!--The content below is only a placeholder and can be replaced.-->
+    <main>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <h3 class="title is-3">{{ title }}</h3>
+          </a>
+    
+          <a
+            role="button"
+            class="navbar-burger burger"
+            [ngClass]="{ 'is-active': burgerOpen }"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+            (click)="toggleBurger()"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+    
+        <div
+          id="navbarBasicExample"
+          class="navbar-menu"
+          [ngClass]="{ 'is-active': burgerOpen }"
+        >
+          <div class="navbar-start">
+            <a class="navbar-item" [routerLink]="['/']">
+              Todos
+            </a>
+    
+            <a class="navbar-item" [routerLink]="['/categories']">
+              Categories
+            </a>
+          </div>
+        </div>
+      </nav>
+    
+      <router-outlet></router-outlet>
+    </main>
+    
+  </nb-layout-column>
 
-  <router-outlet></router-outlet>
-</main>
+  <nb-layout-footer fixed>
+  <!-- Insert footer here -->
+  </nb-layout-footer>
+
+</nb-layout>
