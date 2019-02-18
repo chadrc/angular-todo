@@ -70,6 +70,14 @@ export class TodoPageComponent implements OnInit {
     );
   }
 
+  get selectedListName(): string {
+    if (this.selectedListIndex === -1) {
+      return "Select List";
+    }
+
+    return this.todoLists[this.selectedListIndex].name;
+  }
+
   get selectedListTodos(): Todo[] {
     if (this.selectedListIndex === -1) {
       return [];

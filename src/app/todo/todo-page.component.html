@@ -9,7 +9,7 @@
     </nb-sidebar>
 
     <nb-layout-column>
-      <h1>Selected List</h1>
+      <h1>{{ selectedListName }}</h1>
       <nb-card *ngFor="let todo of selectedListTodos">
         <nb-card-body>
           {{ todo.text }}
