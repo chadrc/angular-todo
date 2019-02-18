@@ -9,7 +9,7 @@ import { TodoService } from "../todo.service";
   styleUrls: ["./todo-page.component.scss"]
 })
 export class TodoPageComponent implements OnInit {
-  newTodoText = "";
+  _newTodoText = "";
   selectedListIndex = 0;
   creatingList = false;
   listIndexToDelete = -1;
@@ -23,6 +23,14 @@ export class TodoPageComponent implements OnInit {
   fetchTodoListsError: any;
 
   constructor(private todoService: TodoService) {}
+
+  get newTodoText() {
+    return this._newTodoText;
+  }
+
+  set newTodoText(value: string) {
+    this._newTodoText = value;
+  }
 
   ngOnInit() {
     this.todoService.getCategories().subscribe(
