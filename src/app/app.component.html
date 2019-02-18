@@ -1,58 +1,27 @@
-<nb-layout>
-
-  <nb-layout-header fixed>
-  <!-- Insert header here -->
-  </nb-layout-header>
-
-  <nb-layout-column>
-
-    <!--The content below is only a placeholder and can be replaced.-->
-    <main>
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/">
-            <h3 class="title is-3">{{ title }}</h3>
+<main>
+  <nb-layout>
+    <nb-layout-header fixed>
+      <h3>{{ title }}</h3>
+      <nb-actions>
+        <nb-action>
+          <a [routerLink]="['/']">
+            Todos
           </a>
-    
-          <a
-            role="button"
-            class="navbar-burger burger"
-            [ngClass]="{ 'is-active': burgerOpen }"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample"
-            (click)="toggleBurger()"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+        </nb-action>
+        <nb-action>
+          <a [routerLink]="['/categories']">
+            Categories
           </a>
-        </div>
-    
-        <div
-          id="navbarBasicExample"
-          class="navbar-menu"
-          [ngClass]="{ 'is-active': burgerOpen }"
-        >
-          <div class="navbar-start">
-            <a class="navbar-item" [routerLink]="['/']">
-              Todos
-            </a>
-    
-            <a class="navbar-item" [routerLink]="['/categories']">
-              Categories
-            </a>
-          </div>
-        </div>
-      </nav>
-    
+        </nb-action>
+      </nb-actions>
+    </nb-layout-header>
+
+    <nb-layout-column>
       <router-outlet></router-outlet>
-    </main>
-    
-  </nb-layout-column>
+    </nb-layout-column>
 
-  <nb-layout-footer fixed>
-  <!-- Insert footer here -->
-  </nb-layout-footer>
-
-</nb-layout>
+    <nb-layout-footer fixed>
+      <!-- Insert footer here -->
+    </nb-layout-footer>
+  </nb-layout>
+</main>
