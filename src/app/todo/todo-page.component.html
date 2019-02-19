@@ -15,8 +15,22 @@
       <h1>{{ selectedListName }}</h1>
       <nb-card>
         <nb-card-body class="inline-input-card">
-          <input type="text" nbInput fullWidth placeholder="New Todo" />
-          <button nbButton outline status="primary" size="small">Add</button>
+          <input
+            type="text"
+            nbInput
+            fullWidth
+            placeholder="New Todo"
+            [(ngModel)]="newTodoText"
+          />
+          <button
+            nbButton
+            outline
+            status="primary"
+            size="small"
+            (click)="addTodo()"
+          >
+            Add
+          </button>
         </nb-card-body>
       </nb-card>
       <nb-card *ngFor="let todo of selectedListTodos">

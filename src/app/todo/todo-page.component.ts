@@ -47,6 +47,28 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     this._newTodoText = value;
   }
 
+  get selectedListName(): string {
+    if (this.selectedListIndex === -1) {
+      return "Select List";
+    }
+
+    return this.todoLists[this.selectedListIndex].name;
+  }
+
+  get selectedList(): TodoList {
+    return this.todoLists[this.selectedListIndex];
+  }
+
+  get selectedListTodos(): Todo[] {
+    if (this.selectedListIndex === -1) {
+      return [];
+    }
+
+    let list = this.todoLists[this.selectedListIndex];
+
+    return list ? list.todos : [];
+  }
+
   ngOnInit() {
     this.todoService.getCategories().subscribe(
       categories => {
@@ -78,22 +100,12 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     this.alive = false;
   }
 
-  get selectedListName(): string {
-    if (this.selectedListIndex === -1) {
-      return "Select List";
+  addTodo() {
+    if (this.selectedList) {
+      let newTodo = new Todo(this.newTodoText);
+      this.selectedList.todos.push(newTodo);
+      this.newTodoText = "";
     }
-
-    return this.todoLists[this.selectedListIndex].name;
-  }
-
-  get selectedListTodos(): Todo[] {
-    if (this.selectedListIndex === -1) {
-      return [];
-    }
-
-    let list = this.todoLists[this.selectedListIndex];
-
-    return list ? list.todos : [];
   }
 
   selectList(listId: number) {
