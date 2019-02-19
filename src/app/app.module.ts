@@ -18,7 +18,10 @@ import {
   NbMenuModule,
   NbSidebarModule,
   NbCardModule,
-  NbButtonModule
+  NbButtonModule,
+  NbInputModule,
+  NbSelectModule,
+  NbCheckboxModule
 } from "@nebular/theme";
 
 @NgModule({
@@ -38,10 +41,12 @@ import {
     NbThemeModule.forRoot({ name: "default" }),
     NbLayoutModule,
     NbActionsModule,
+    NbCheckboxModule,
     NbCardModule,
     NbButtonModule,
     NbMenuModule.forRoot(),
     NbMenuModule,
+    NbInputModule,
     NbSidebarModule.forRoot()
   ],
   providers: [],

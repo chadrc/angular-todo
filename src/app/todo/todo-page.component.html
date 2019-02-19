@@ -5,15 +5,34 @@
     </nb-layout-header>
 
     <nb-sidebar>
-      <button nbButton fullWidth size="xsmall">New List</button>
+      <button nbButton outline fullWidth size="xsmall" status="primary">
+        New List
+      </button>
       <nb-menu tag="todoListsMenu" [items]="menuItems"></nb-menu>
     </nb-sidebar>
 
     <nb-layout-column>
       <h1>{{ selectedListName }}</h1>
+      <nb-card>
+        <nb-card-body class="inline-input-card">
+          <input type="text" nbInput fullWidth placeholder="New Todo" />
+          <button nbButton outline status="primary" size="small">Add</button>
+        </nb-card-body>
+      </nb-card>
       <nb-card *ngFor="let todo of selectedListTodos">
-        <nb-card-body>
-          {{ todo.text }}
+        <nb-card-body class="inline-input-card">
+          <nb-checkbox
+            [(ngModel)]="todo.completed"
+            status="success"
+          ></nb-checkbox>
+          <input
+            type="text"
+            nbInput
+            fullWidth
+            placeholder="New Todo"
+            [(ngModel)]="todo.text"
+          />
+          <button nbButton outline status="danger" size="small">Delete</button>
         </nb-card-body>
       </nb-card>
     </nb-layout-column>
