@@ -1,3 +1,21 @@
+<ng-template #createListDialog let-data let-ref="createListRef">
+  <nb-card>
+    <nb-card-header>
+      Create List
+    </nb-card-header>
+    <nb-card-body>
+      <input nbInput fullWidth [(ngModel)]="newListName" />
+      <button
+        nbButton
+        status="primary"
+        fullWidth
+        (click)="closeCreateListDialog()"
+      >
+        Create
+      </button>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
 <section>
   <nb-layout>
     <nb-layout-header fixed>
@@ -5,7 +23,14 @@
     </nb-layout-header>
 
     <nb-sidebar>
-      <button nbButton outline fullWidth size="xsmall" status="primary">
+      <button
+        nbButton
+        outline
+        fullWidth
+        size="xsmall"
+        status="primary"
+        (click)="openCreateListDialog(createListDialog)"
+      >
         New List
       </button>
       <nb-menu tag="todoListsMenu" [items]="menuItems"></nb-menu>

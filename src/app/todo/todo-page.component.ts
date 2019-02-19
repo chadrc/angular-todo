@@ -1,8 +1,13 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, TemplateRef } from "@angular/core";
 import Category from "src/classes/Category";
 import TodoList from "src/classes/TodoList";
 import { TodoService } from "../todo.service";
-import { NbMenuItem, NbMenuService } from "@nebular/theme";
+import {
+  NbMenuItem,
+  NbMenuService,
+  NbDialogService,
+  NbDialogRef
+} from "@nebular/theme";
 import Todo from "src/classes/Todo";
 import { takeWhile, tap } from "rxjs/operators";
 import { ActivatedRoute, Params, ParamMap } from "@angular/router";
@@ -17,7 +22,11 @@ interface CategoryListing {
   styleUrls: ["./todo-page.component.scss"]
 })
 export class TodoPageComponent implements OnInit, OnDestroy {
-  _newTodoText = "";
+  private _newTodoText = "";
+  private alive: boolean = true;
+  private _newListName = "";
+  private createListDialogRef: NbDialogRef<any>;
+
   selectedListIndex = -1;
   creatingList = false;
   listIndexToDelete = -1;
@@ -31,12 +40,12 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   fetchTodoListsError: any;
   menuItems: NbMenuItem[] = [];
   selectedItem: string;
-  private alive: boolean = true;
 
   constructor(
     private todoService: TodoService,
     private menuService: NbMenuService,
-    private activedRoute: ActivatedRoute
+    private activedRoute: ActivatedRoute,
+    private dialogService: NbDialogService
   ) {}
 
   get newTodoText() {
@@ -45,6 +54,14 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   set newTodoText(value: string) {
     this._newTodoText = value;
+  }
+
+  get newListName() {
+    return this._newListName;
+  }
+
+  set newListName(value: string) {
+    this._newListName = value;
   }
 
   get selectedListName(): string {
@@ -98,6 +115,24 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.alive = false;
+  }
+
+  closeCreateListDialog() {
+    this.createListDialogRef.close();
+    this.createListDialogRef = null;
+  }
+
+  createList() {
+    let newList = new TodoList(this.newListName, 1);
+    this.newListName = "";
+    this.todoLists.push(newList);
+
+    this.createItems();
+  }
+
+  openCreateListDialog(ref: TemplateRef<any>) {
+    this.createListDialogRef = this.dialogService.open(ref);
+    this.createListDialogRef.onClose.subscribe(() => this.createList());
   }
 
   addTodo() {

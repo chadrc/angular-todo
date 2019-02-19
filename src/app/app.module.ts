@@ -21,7 +21,8 @@ import {
   NbButtonModule,
   NbInputModule,
   NbSelectModule,
-  NbCheckboxModule
+  NbCheckboxModule,
+  NbDialogModule
 } from "@nebular/theme";
 
 @NgModule({
@@ -40,6 +41,8 @@ import {
     HttpClientModule,
     NbThemeModule.forRoot({ name: "default" }),
     NbLayoutModule,
+    NbDialogModule.forRoot(),
+    NbDialogModule.forChild(),
     NbActionsModule,
     NbCheckboxModule,
     NbCardModule,
