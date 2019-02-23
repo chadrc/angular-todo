@@ -1,3 +1,33 @@
-<p>
-  categories-page works!
-</p>
+<section>
+  <nb-layout>
+    <nb-layout-header fixed>
+      <app-nav-bar></app-nav-bar>
+    </nb-layout-header>
+
+    <nb-layout-column>
+      <h1>
+        Categories
+      </h1>
+      <nb-card *ngFor="let category of categories">
+        <nb-card-body class="inline-input-card">
+          <input
+            type="text"
+            nbInput
+            fullWidth
+            placeholder="New Todo"
+            [(ngModel)]="category.name"
+          />
+          <button
+            nbButton
+            outline
+            status="danger"
+            size="small"
+            (click)="removeCategory(category.id)"
+          >
+            Delete
+          </button>
+        </nb-card-body>
+      </nb-card>
+    </nb-layout-column>
+  </nb-layout>
+</section>
