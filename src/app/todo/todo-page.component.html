@@ -6,9 +6,9 @@
     <nb-card-body>
       <input nbInput fullWidth [(ngModel)]="newListName" />
       <nb-select placeholder="Select Category" [(selected)]="newListCategory">
-        <nb-option *ngFor="let category of categories" [value]="category.id">{{
-          category.name
-        }}</nb-option>
+        <nb-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </nb-option>
       </nb-select>
       <button
         nbButton
