@@ -35,8 +35,6 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   selectedCategoryId = -1;
   editingCategories = false;
   currentCategoryPage = 1;
-  categories: Category[] = [];
-  todoLists: TodoList[] = [];
   fetchCategoriesError: any;
   fetchTodoListsError: any;
   menuItems: NbMenuItem[] = [];
@@ -48,6 +46,14 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     private activedRoute: ActivatedRoute,
     private dialogService: NbDialogService
   ) {}
+
+  get todoLists(): TodoList[] {
+    return this.todoService.todoLists || [];
+  }
+
+  get categories(): Category[] {
+    return this.todoService.categories || [];
+  }
 
   get newTodoText() {
     return this._newTodoText;
@@ -102,11 +108,12 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.todoService.getCategories().subscribe(
       categories => {
-        this.categories = categories;
+        console.log("categories", categories);
 
         this.todoService.getTodoLists().subscribe(
           todoLists => {
-            this.todoLists = todoLists;
+            console.log("todoLists", todoLists);
+
             this.createItems();
             this.activedRoute.paramMap.subscribe((params: ParamMap) => {
               const id = params.get("id");
@@ -202,7 +209,9 @@ export class TodoPageComponent implements OnInit, OnDestroy {
             lists: []
           };
 
-          previous.push(categoryListing);
+          if (categoryListing.category) {
+            previous.push(categoryListing);
+          }
         }
 
         categoryListing.lists.push(current);

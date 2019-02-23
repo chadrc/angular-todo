@@ -8,14 +8,16 @@ import { TodoService } from "../todo.service";
   styleUrls: ["./categories-page.component.scss"]
 })
 export class CategoriesPageComponent implements OnInit {
-  categories: Category[];
-
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
     this.todoService.getCategories().subscribe((categories: Category[]) => {
-      this.categories = categories;
+      // this.categories = categories;
     });
+  }
+
+  get categories(): Category[] {
+    return this.todoService.categories;
   }
 
   removeCategory(id: number) {
