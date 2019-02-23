@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import Category from "src/classes/Category";
 import { TodoService } from "../todo.service";
+import { NbDialogService, NbDialogRef } from "@nebular/theme";
 
 @Component({
   selector: "app-categories-page",
@@ -8,7 +9,25 @@ import { TodoService } from "../todo.service";
   styleUrls: ["./categories-page.component.scss"]
 })
 export class CategoriesPageComponent implements OnInit {
-  constructor(private todoService: TodoService) {}
+  private _newCategoryName = "";
+  private createCategoryDialogRef: NbDialogRef<any>;
+
+  constructor(
+    private todoService: TodoService,
+    private dialogService: NbDialogService
+  ) {}
+
+  get newCategoryName() {
+    return this._newCategoryName;
+  }
+
+  set newCategoryName(value: string) {
+    this._newCategoryName = value;
+  }
+
+  get canCreateCategory() {
+    return this._newCategoryName.trim() !== "";
+  }
 
   ngOnInit() {
     this.todoService.getCategories().subscribe((categories: Category[]) => {
@@ -26,5 +45,22 @@ export class CategoriesPageComponent implements OnInit {
     );
 
     this.categories.splice(index, 1);
+  }
+
+  createCategory() {
+    if (this._newCategoryName.trim() !== "") {
+      this.categories.push(new Category(this._newCategoryName));
+      this._newCategoryName = "";
+    }
+  }
+
+  openCreateCategoryModal(ref: TemplateRef<any>) {
+    this.createCategoryDialogRef = this.dialogService.open(ref);
+    this.createCategoryDialogRef.onClose.subscribe(() => this.createCategory());
+  }
+
+  closeCreateCategoryModal() {
+    this.createCategoryDialogRef.close();
+    this.createCategoryDialogRef = null;
   }
 }

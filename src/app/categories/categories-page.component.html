@@ -1,3 +1,22 @@
+<ng-template #createCategoryDialog let-data let-ref="createListRef">
+  <nb-card class="create-category-modal">
+    <nb-card-header>
+      Create List
+    </nb-card-header>
+    <nb-card-body>
+      <input nbInput fullWidth [(ngModel)]="newCategoryName" />
+      <button
+        nbButton
+        status="primary"
+        fullWidth
+        [disabled]="!canCreateCategory"
+        (click)="closeCreateCategoryModal()"
+      >
+        Create
+      </button>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
 <section>
   <nb-layout>
     <nb-layout-header fixed>
@@ -7,6 +26,16 @@
     <nb-layout-column>
       <h1>
         Categories
+        <button
+          class="create-category-button"
+          nbButton
+          outline
+          size="small"
+          status="primary"
+          (click)="openCreateCategoryModal(createCategoryDialog)"
+        >
+          Create
+        </button>
       </h1>
       <nb-card *ngFor="let category of categories">
         <nb-card-body class="inline-input-card">
