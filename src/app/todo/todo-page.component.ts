@@ -98,7 +98,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
             this.activedRoute.paramMap.subscribe((params: ParamMap) => {
               const id = params.get("id");
               if (id) {
-                this.selectList(parseInt(id));
+                this.selectList(parseInt(id, 10));
               }
             });
           },
