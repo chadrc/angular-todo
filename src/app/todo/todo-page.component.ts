@@ -123,11 +123,13 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   }
 
   createList() {
-    const newList = new TodoList(this.newListName, 1);
-    this.newListName = "";
-    this.todoLists.push(newList);
+    if (this._newListName.trim() !== "") {
+      const newList = new TodoList(this.newListName, 1);
+      this.newListName = "";
+      this.todoLists.push(newList);
 
-    this.createItems();
+      this.createItems();
+    }
   }
 
   openCreateListDialog(ref: TemplateRef<any>) {
