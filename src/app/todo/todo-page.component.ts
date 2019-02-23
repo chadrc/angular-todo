@@ -23,7 +23,7 @@ interface CategoryListing {
 })
 export class TodoPageComponent implements OnInit, OnDestroy {
   private _newTodoText = "";
-  private alive: boolean = true;
+  private alive = true;
   private _newListName = "";
   private createListDialogRef: NbDialogRef<any>;
 
@@ -81,7 +81,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
       return [];
     }
 
-    let list = this.todoLists[this.selectedListIndex];
+    const list = this.todoLists[this.selectedListIndex];
 
     return list ? list.todos : [];
   }
@@ -96,7 +96,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
             this.todoLists = todoLists;
             this.createItems();
             this.activedRoute.paramMap.subscribe((params: ParamMap) => {
-              let id = params.get("id");
+              const id = params.get("id");
               if (id) {
                 this.selectList(parseInt(id));
               }
@@ -123,7 +123,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   }
 
   createList() {
-    let newList = new TodoList(this.newListName, 1);
+    const newList = new TodoList(this.newListName, 1);
     this.newListName = "";
     this.todoLists.push(newList);
 
@@ -137,7 +137,7 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   addTodo() {
     if (this.selectedList) {
-      let newTodo = new Todo(this.newTodoText);
+      const newTodo = new Todo(this.newTodoText);
       this.selectedList.todos.push(newTodo);
       this.newTodoText = "";
     }

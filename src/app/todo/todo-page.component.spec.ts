@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { TodoPageComponent } from './todo-page.component';
+import { TodoPageComponent } from "./todo-page.component";
 
-describe('TodoPageComponent', () => {
+describe("TodoPageComponent", () => {
   let component: TodoPageComponent;
   let fixture: ComponentFixture<TodoPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoPageComponent ]
-    })
-    .compileComponents();
+      declarations: [TodoPageComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('TodoPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
