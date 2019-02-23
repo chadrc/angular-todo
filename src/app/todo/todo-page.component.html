@@ -71,7 +71,15 @@
             placeholder="New Todo"
             [(ngModel)]="todo.text"
           />
-          <button nbButton outline status="danger" size="small">Delete</button>
+          <button
+            nbButton
+            outline
+            status="danger"
+            size="small"
+            (click)="removeTodo(todo.id)"
+          >
+            Delete
+          </button>
         </nb-card-body>
       </nb-card>
     </nb-layout-column>

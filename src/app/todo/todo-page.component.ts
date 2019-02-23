@@ -143,6 +143,11 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  removeTodo(id: number) {
+    const index = this.selectedListTodos.findIndex(todo => todo.id === id);
+    this.selectedListTodos.splice(index, 1);
+  }
+
   selectList(listId: number) {
     this.selectedListIndex = this.todoLists.findIndex(
       (list: TodoList) => list.id === listId
