@@ -146,6 +146,13 @@ export class TodoPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  deleteSelectedList() {
+    if (this.selectedList) {
+      this.todoLists.splice(this.selectedListIndex, 1);
+      this.selectedListIndex = -1;
+    }
+  }
+
   openCreateListDialog(ref: TemplateRef<any>) {
     this.createListDialogRef = this.dialogService.open(ref);
     this.createListDialogRef.onClose.subscribe(() => this.createList());

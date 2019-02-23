@@ -43,7 +43,20 @@
     </nb-sidebar>
 
     <nb-layout-column>
-      <h1>{{ selectedListName }}</h1>
+      <h1>
+        {{ selectedListName }}
+        <button
+          class="delete-list-button"
+          nbButton
+          outline
+          size="small"
+          status="danger"
+          (click)="deleteSelectedList()"
+          [disabled]="selectedListIndex === -1"
+        >
+          Delete
+        </button>
+      </h1>
       <nb-card>
         <nb-card-body class="inline-input-card">
           <input
