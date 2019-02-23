@@ -20,7 +20,8 @@ nb-card-body.inline-input-card {
 }
 
 nb-card.create-todo-modal {
-  input {
+  input,
+  nb-select {
     margin-bottom: 1.25rem;
   }
 }

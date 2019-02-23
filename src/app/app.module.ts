@@ -50,6 +50,7 @@ import {
     NbMenuModule.forRoot(),
     NbMenuModule,
     NbInputModule,
+    NbSelectModule,
     NbSidebarModule.forRoot()
   ],
   providers: [],

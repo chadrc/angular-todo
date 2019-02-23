@@ -23,6 +23,7 @@ interface CategoryListing {
 })
 export class TodoPageComponent implements OnInit, OnDestroy {
   private _newTodoText = "";
+  private _newListCategory = -1;
   private alive = true;
   private _newListName = "";
   private createListDialogRef: NbDialogRef<any>;
@@ -62,6 +63,18 @@ export class TodoPageComponent implements OnInit, OnDestroy {
 
   set newListName(value: string) {
     this._newListName = value;
+  }
+
+  get newListCategory() {
+    return this._newListCategory;
+  }
+
+  set newListCategory(value: number) {
+    this._newListCategory = value;
+  }
+
+  get canCreateList() {
+    return this.newListName.trim() !== "" && this.newListCategory !== -1;
   }
 
   get selectedListName(): string {
@@ -123,9 +136,10 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   }
 
   createList() {
-    if (this._newListName.trim() !== "") {
-      const newList = new TodoList(this.newListName, 1);
+    if (this._newListName.trim() !== "" || this._newListCategory === -1) {
+      const newList = new TodoList(this.newListName, this.newListCategory);
       this.newListName = "";
+      this.newListCategory = -1;
       this.todoLists.push(newList);
 
       this.createItems();

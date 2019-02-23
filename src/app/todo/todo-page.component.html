@@ -5,10 +5,16 @@
     </nb-card-header>
     <nb-card-body>
       <input nbInput fullWidth [(ngModel)]="newListName" />
+      <nb-select placeholder="Select Category" [(selected)]="newListCategory">
+        <nb-option *ngFor="let category of categories" [value]="category.id">{{
+          category.name
+        }}</nb-option>
+      </nb-select>
       <button
         nbButton
         status="primary"
         fullWidth
+        [disabled]="!canCreateList"
         (click)="closeCreateListDialog()"
       >
         Create
