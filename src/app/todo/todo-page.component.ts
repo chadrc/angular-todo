@@ -108,12 +108,8 @@ export class TodoPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.todoService.getCategories().subscribe(
       categories => {
-        console.log("categories", categories);
-
         this.todoService.getTodoLists().subscribe(
           todoLists => {
-            console.log("todoLists", todoLists);
-
             this.createItems();
             this.activedRoute.paramMap.subscribe((params: ParamMap) => {
               const id = params.get("id");
